@@ -6,7 +6,7 @@ int main()
 {
     int defaultNoRek = 123456, defaultNoRekA = 22222, defaultNoRekB = 33333, defaultPin = 1234, pin = 0, noRek = 0;
     int saldo = 100, nominal = 0, pecahan, pecahan50 = 50, pecahan100 = 100;
-    int ulang = 0;
+    int ulang = 0, ulangNorek = 0;
     int menuPilih = 0, pilih;
     // USER memesukan pin
     cout << "ATM SEDERHANA\n";
@@ -35,77 +35,77 @@ int main()
                     // Menu Transfer
                 case 1:
                     cout << "Menu Transfer\n";
-                    // while ()
-                    // {
-                    cout << "Masukkan No rekening tujuan: ";
-                    cin >> noRek;
-                    if (noRek == defaultNoRekA || noRek == defaultNoRekB)
+                    while (ulangNorek)
                     {
-                        cout << "Masukkan Nominal : ";
-                        cin >> nominal;
-                        if (saldo >= nominal)
+                        cout << "Masukkan No rekening tujuan: ";
+                        cin >> noRek;
+                        if (noRek == defaultNoRekA || noRek == defaultNoRekB)
                         {
-                            cout << "NO rekening tujuan : " << noRek << endl;
-                            cout << "Nominal uang : " << nominal << endl;
-                            while (menuPilih < 3)
+                            cout << "Masukkan Nominal : ";
+                            cin >> nominal;
+                            if (saldo >= nominal)
                             {
-                                cout << "Masukkan Pin untuk konfirmasi:";
-                                cin >> pin;
-                                if (pin == defaultPin)
+                                cout << "NO rekening tujuan : " << noRek << endl;
+                                cout << "Nominal uang : " << nominal << endl;
+                                while (menuPilih < 3)
                                 {
-                                    saldo = saldo - nominal;
-                                    cout << "Transaksi Berhasil\n";
-                                    cout << "Saldo tersisa : " << saldo << endl;
-                                    cout << "Apakah anda ingin melakukan transaksi lainnya ?\n(Ketik 1 untuk iya / ketik 0 untuk tidak)";
-                                    cin >> pilih;
-                                    if (pilih != 0)
+                                    cout << "Masukkan Pin untuk konfirmasi:";
+                                    cin >> pin;
+                                    if (pin == defaultPin)
                                     {
+                                        saldo = saldo - nominal;
+                                        cout << "Transaksi Berhasil\n";
+                                        cout << "Saldo tersisa : " << saldo << endl;
+                                        cout << "Apakah anda ingin melakukan transaksi lainnya ?\n(Ketik 1 untuk iya / ketik 0 untuk tidak)";
+                                        cin >> pilih;
+                                        if (pilih != 0)
+                                        {
+                                        }
+                                    }
+                                    else
+                                    {
+                                        cout << "PIN SALAH!\n";
+                                        menuPilih++;
+                                        if (menuPilih == 3)
+                                        {
+                                            ulang = 3;
+                                            pilih = 0;
+                                            cout << "ATM terblokir" << endl;
+                                        }
                                     }
                                 }
-                                else
+                            }
+                            else
+                            {
+                                cout << "Saldo Anda Kurang \n";
+                                cout << "Apakah anda ingin melakukan transaksi lainnya ?\n(Ketik 1 untuk iya / ketik 0 untuk tidak)";
+                                cin >> pilih;
+                                if (pilih == 0)
                                 {
-                                    cout << "PIN SALAH!\n";
-                                    menuPilih++;
-                                    if (menuPilih == 3)
-                                    {
-                                        ulang = 3;
-                                        pilih = 0;
-                                        cout << "ATM terblokir" << endl;
-                                    }
+                                    ulang = 3;
                                 }
                             }
                         }
                         else
                         {
-                            cout << "Saldo Anda Kurang \n";
-                            cout << "Apakah anda ingin melakukan transaksi lainnya ?\n(Ketik 1 untuk iya / ketik 0 untuk tidak)";
-                            cin >> pilih;
-                            if (pilih == 0)
-                            {
-                                ulang = 3;
-                            }
+                            cout << "No rekening tujuan tidak ditemukan" << endl;
                         }
                     }
-                    else
-                    {
-                        cout << "No rekening tujuan tidak ditemukan" << endl;
-                    }
-                    // }
                     break;
-                    // case 2:
-                    //     cout << "Menu Tarik Tunai" <<endl;
-                    //     cout << "Pilih pecahan yang akan di ambil : ";
-                    //     cin >> pecahan;
-                    //     switch (pecahan)
-                    //     {
-                    //     case 50:
+                case 2:
+                    cout << "Menu Tarik Tunai" << endl;
+                    cout << "Pilih pecahan yang akan di ambil : ";
+                    cin >> pecahan;
+                    switch (pecahan)
+                    {
+                    case 50:
 
-                    //         break;
+                        break;
 
-                    //     default:
-                    //         break;
-                    //     }
-                    //     break;
+                    default:
+                        break;
+                    }
+                    break;
 
                 case 0:
                     cout << "Exit";
