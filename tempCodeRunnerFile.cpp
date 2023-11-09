@@ -1,5 +1,2 @@
-                            // cin >> ulangNorek;
-                            // if (ulangNorek == 0)
-                            // {
-                            //     ulang = 3;
-                            // }
+                    cout << "Masuk Kode virtual account : ";
+                    cin >> kodeTransaksi;

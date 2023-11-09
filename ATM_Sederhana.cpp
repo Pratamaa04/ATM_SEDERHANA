@@ -5,9 +5,10 @@ using namespace std;
 int main()
 {
     int defaultNoRek = 123456, defaultNoRekA = 22222, defaultNoRekB = 33333, defaultPin = 1234, pin = 0, noRek = 0;
-    int saldo = 100, saldo50, saldo100, nominal = 0, pecahan, pecahan50 = 50, pecahan100 = 100;
+    int saldo = 100, nominal = 0, pecahan, pecahan50 = 50, pecahan100 = 100;
     int ulang = 0, ulangNorek = 0, konfirmasi = 0;
     int menuPilih = 0, pilih;
+    int kodeTransaksi;
     // USER memesukan pin
     cout << "ATM SEDERHANA\n";
     // Pengulangan Sementar hanya untuk pin jika salah atau benar ATM terblokir (Mungkin bisa ditambah no rek)
@@ -146,8 +147,64 @@ int main()
                 // menu tarik tunai
                 case 2:
                     cout << "Menu Tarik tunai" << endl;
+                    cout << "Pilih pecahan yang anda inginkan : ";
+                    cin >> pecahan;
+                    switch (pecahan)
+                    {
+                    case 50:
+                        cout << "Masukkan nominal : ";
+                        cin >> nominal;
+                        if (saldo >= nominal)
+                        {
+                            if (nominal % pecahan50 == 0)
+                            {
+                                pecahan50 = nominal / pecahan50;
+                                saldo = saldo - nominal;
+                                cout << "Pecahan yang anda dapatkan sebanyak : " << pecahan50 << endl;
+                                cout << "Sisa saldo anda :" << saldo << endl;
+                            }
+                            else
+                            {
+                                cout << "pengambilan minimal 50" << endl;
+                            }
+                        }
+                        else
+                        {
+                            cout << "Saldo Anda Kurang" << endl;
+                        }
+                        break;
 
+                    case 100:
+                        cout << "Masukkan nominal : ";
+                        cin >> nominal;
+                        if (saldo >= nominal)
+                        {
+                            if (nominal % pecahan100 == 0)
+                            {
+                                pecahan100 = nominal / pecahan100;
+                                saldo = saldo - nominal;
+                                cout << "Pecahan yang anda dapatkan sebanyak : " << pecahan100 << endl;
+                                cout << "Sisa saldo anda :" << saldo << endl;
+                            }
+                            else
+                            {
+                                cout << "pengambilan minimal 100" << endl;
+                            }
+                        }
+                        else
+                        {
+                            cout << "Saldo Anda Kurang" << endl;
+                        }
+                    default:
+                        pilih = 1;
+                        break;
+                    }
                     break;
+
+                case 5:
+                    cout << "Menu virtual Account" << endl;
+                    cout << "Masuk Kode virtual account : ";
+                    cin >> kodeTransaksi;
 
                 case 0:
                     cout << "Exit";
