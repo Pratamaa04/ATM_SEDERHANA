@@ -4,22 +4,22 @@ using namespace std;
 
 int main()
 {
-    int defaultNoRek = 123456, defaultNoRekA = 22222, defaultNoRekB = 33333, defaultPin = 1234, pin = 0, noRek = 0;
+    int defaultNoRek = 123456, defaultNoRekA = 22222, defaultNoRekB = 33333, defaultPin = 1234, pin = 0, noRek = 0, inputRek = 0, inputPin = 0;
     int saldo = 100, nominal = 0, pecahan, pecahan50 = 50, pecahan100 = 100;
     int ulang = 0, ulangNorek = 0, konfirmasi = 0;
     int menuPilih = 0, pilih;
-    int kodeTransaksi;
+    int kodeTransaksi, transaksiA = 88777, harga = 10;
     // USER memesukan pin
     cout << "ATM SEDERHANA\n";
     // Pengulangan Sementar hanya untuk pin jika salah atau benar ATM terblokir (Mungkin bisa ditambah no rek)
     while (ulang < 3)
     {
         cout << "Masukan No rekening anda : ";
-        cin >> noRek;
+        cin >> inputRek;
         cout << "Masukan No pin anda : ";
-        cin >> pin;
+        cin >> inputPin;
         // USER masuk dalam menu
-        if (noRek == defaultNoRek && pin == defaultPin)
+        if (inputRek == defaultNoRek && inputPin == defaultPin)
         {
             // pengulangan untuk menu
             while (pilih != 0)
@@ -195,6 +195,8 @@ int main()
                         {
                             cout << "Saldo Anda Kurang" << endl;
                         }
+                        break;
+
                     default:
                         pilih = 1;
                         break;
@@ -205,6 +207,14 @@ int main()
                     cout << "Menu virtual Account" << endl;
                     cout << "Masuk Kode virtual account : ";
                     cin >> kodeTransaksi;
+                    if (kodeTransaksi == transaksiA)
+                    {
+                        cout << "Kode transaksi anda adalah : " << transaksiA << endl;
+                        cout << "Harga barang yang anda beli : " << harga << endl;
+                        saldo = saldo - harga;
+                        cout << "";
+                    }
+                    break;
 
                 case 0:
                     cout << "Exit";
