@@ -90,7 +90,7 @@ int main()
                                                 ulang = 3;
                                             }
                                         }
-                                        // pengkondisian jika pin
+                                        // pengkondisian jika pin salah
                                         else
                                         {
                                             cout << "PIN SALAH!\n";
@@ -107,6 +107,7 @@ int main()
                                 }
                                 else
                                 {
+                                    // konfirmasi untuk mengubah tujuan no rekening
                                     cout << "Apakah ingin mengubah tujuan no rekening dan nominal ?\n (ketik 1 untuk IYA / ketik 0 untuk kembali ke menu)";
                                     cin >> konfirmasi;
                                     if (konfirmasi != 0)
@@ -231,7 +232,7 @@ int main()
                                     if (nominal % pecahan100 == 0)
                                     {
 
-                                        pecahan50 = nominal / pecahan100;
+                                        pecahan100 = nominal / pecahan100;
                                         saldo = saldo - nominal;
                                         cout << "Pecahan yang anda dapatkan sebanyak : " << pecahan100 << endl;
                                         cout << "Sisa saldo anda :" << saldo << endl;
@@ -325,10 +326,12 @@ int main()
                     {
                         cout << "Setor ke rekening : \n (ketik 1 untuk setor ke rekening anda / ketik 2 untuk setor ke rekening lain)";
                         cin >> pilihRekening;
+                        ulangMenu = 0;
                         switch (pilihRekening)
                         {
                         case 1:
                             cout << "uang disetorkan ke rekening anda";
+                            ulangMenu = 0;
                             while (ulangMenu < 3)
                             {
                                 cout << "Masukkan konfirmasi pin : ";
@@ -337,6 +340,18 @@ int main()
                                 {
                                     saldo = saldo + nominal;
                                     cout << "Saldo anda :" << saldo << endl;
+                                    cout << "Transaksi BERHASIL" << endl;
+                                    cout << "Apakah anda ingin melakukan transaksi lainnya\n (ketik 1 untuk IYA / ketik 0 untuk TIDAK)";
+                                    cin >> pilih;
+                                    if (pilih != 0)
+                                    {
+                                        ulangMenu = 3;
+                                    }
+                                    else
+                                    {
+                                        ulangMenu = 3;
+                                        ulang = 3;
+                                    }
                                 }
                                 else
                                 {
@@ -360,7 +375,40 @@ int main()
                             cin >> noRek;
                             if (noRek == defaultNoRekA || noRek == defaultNoRekB)
                             {
-                                cout << "";
+                                ulangMenu = 0;
+                                while (ulangMenu < 3)
+                                {
+                                    cout << "Masukkan pin untuk konfirmasi : \n";
+                                    cin >> pin;
+                                    if (pin == defaultPin)
+                                    {
+                                        cout << "Transaksi BERHASIL \n";
+                                        cout << "Apakah anda ingin melakukan transaksi lainnya :\n (ketik 1 untuk IYA / ketik 0 untuk TIDAK)";
+                                        cin >> pilih;
+                                        if (pilih != 0)
+                                        {
+                                            ulangMenu = 3;
+                                        }
+                                        else
+                                        {
+                                            ulangMenu = 3;
+                                            ulang = 3;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        ulangMenu++;
+                                        if (ulangMenu == 3)
+                                        {
+                                            cout << "ATM anda terblokir" << endl;
+                                            ulang = 3;
+                                        }
+                                        else
+                                        {
+                                            cout << "Anda sudah memasukan pin salah sebanyak : " << ulangMenu << endl;
+                                        }
+                                    }
+                                }
                             }
                             else
                             {
@@ -374,7 +422,7 @@ int main()
                     }
                     else
                     {
-                        cout << "";
+                        cout << "Nominal harus pecahan 100 \n";
                     }
                     break;
 
@@ -396,7 +444,7 @@ int main()
                     break;
 
                 case 0:
-                    cout << "Exit";
+                    cout << "Exit" << endl;
                     ulang = 3;
                     break;
 
