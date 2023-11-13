@@ -321,7 +321,7 @@ int main()
                     cout << "Menu Setor tunai\n";
                     cout << "Masukkan nominal : ";
                     cin >> nominal;
-                    if (nominal % pecahan50 == 0)
+                    if (nominal % pecahan100 == 0)
                     {
                         cout << "Setor ke rekening : \n (ketik 1 untuk setor ke rekening anda / ketik 2 untuk setor ke rekening lain)";
                         cin >> pilihRekening;
