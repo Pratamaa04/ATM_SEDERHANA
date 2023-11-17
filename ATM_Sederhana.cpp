@@ -5,7 +5,7 @@ using namespace std;
 int main()
 {
     int defaultNoRek = 123456, defaultNoRekA = 22222, defaultNoRekB = 33333, defaultPin = 1234, pin = 0, noRek = 0, inputRek = 0, inputPin = 0;
-    int saldo = 100, nominal = 0, pecahan, pecahan50 = 50, pecahan100 = 100;
+    int saldo = 1000, nominal = 0, pecahan, pecahan50 = 50, pecahan100 = 100;
     int ulang = 0, ulangNorek = 0, konfirmasi = 0;
     int ulangMenu = 0, pilih;
     int kodeTransaksi, pilihRekening, transaksiA = 88777, harga = 10;
@@ -156,6 +156,7 @@ int main()
                     case 50:
                         cout << "Masukkan nominal : ";
                         cin >> nominal;
+                        ulangMenu = 0;
                         if (saldo >= nominal)
                         {
                             while (ulangMenu < 3)
@@ -186,6 +187,18 @@ int main()
                                     else
                                     {
                                         cout << "pengambilan minimal 50" << endl;
+                                        cout << "Apakah anda ingin melakukan transaksi lainnya : \n (ketik 1 untuk IYA / ketik 0 untu TIDAK)";
+                                        cin >> pilih;
+                                        if (pilih != 0)
+                                        {
+                                            ulangMenu = 3;
+                                            pilih = 1;
+                                        }
+                                        else
+                                        {
+                                            ulangMenu = 3;
+                                            ulang = 3;
+                                        }
                                     }
                                 }
                                 else
@@ -439,7 +452,13 @@ int main()
                     }
                     else
                     {
-                        cout << "kode transaksi tidak ditemukan";
+                        cout << "kode transaksi tidak ditemukan \n";
+                        cout << "Apakah anda ingin melakukan transaksi lainnya: \n (ketik 1 untuk IYA / ketik 0 untuk TIDAK)";
+                        cin >> pilih;
+                        if (pilih == 0)
+                        {
+                            ulang = 3;
+                        }
                     }
                     break;
 
